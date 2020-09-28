@@ -1,0 +1,15 @@
+﻿@model LojaVirtual.Models.Produto;
+@{
+    ViewData["Title"] = "Produto Page";
+}
+@ViewData["Title"];
+<h1>Produto</h1>
+
+
+<b>@Model.Id </b>
+<b>@Model.Nome </b>
+<b>@Model.Descricao </b>
+<b>@Model.Valor.ToString("C") </b>
+
+<h3>Produto -> Vizualizar</h3>
+
