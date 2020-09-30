@@ -12,11 +12,6 @@ namespace LojaVirtual.Models
 
         public string Texto { get; set; }
 
-        public Contato()
-        {
-   
-        }
-
 
     }
 }
