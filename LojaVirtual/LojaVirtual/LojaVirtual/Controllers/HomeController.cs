@@ -35,6 +35,7 @@ namespace LojaVirtual.Controllers
                 var context = new ValidationContext(contato);
                 bool isValid = Validator.TryValidateObject(contato, context, listMessage,true);
 
+                //Identificacao dos erros nos campos
                 if (isValid)
                 {
                     ContatoEmail.EnviarContatoPorEmail(contato);
@@ -42,16 +43,18 @@ namespace LojaVirtual.Controllers
 
                     ViewData["MSG_S"] = "Mensagem de contato enviada com sucesso";
                 }
+                
                 else
                 {
                     StringBuilder sb = new StringBuilder();
                     foreach (var texto in listMessage)
                     {
-                        sb.Append(texto.ErrorMessage);
+                        sb.Append(texto.ErrorMessage + "<br />");
                     }
                     ViewData["MSG_E"] = sb.ToString();
+                    ViewData["CONTATO"] = contato;
                 }
-
+                
             }
             catch (Exception e)
             {
