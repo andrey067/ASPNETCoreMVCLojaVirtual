@@ -11,7 +11,7 @@ namespace LojaVirtual.Controllers
     public class ProdutoController : Controller
     {
 
-        /*Todo controlador herda da classe Controller
+        /*-controlador herda da classe Controller
          * 
          * E sempre vai retornar ActionResult ou IActionResult
          * 

@@ -5,6 +5,8 @@ using System.Threading.Tasks;
 using LojaVirtual.Libraries.Email;
 using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
+using System.ComponentModel.DataAnnotations;
+using System.Text;
 
 namespace LojaVirtual.Controllers
 {
@@ -22,14 +24,41 @@ namespace LojaVirtual.Controllers
 
         public IActionResult ContatoAcao()
         {
-            Contato contato = new Contato();
-            contato.Nome = HttpContext.Request.Form["nome"];
-            contato.Email = HttpContext.Request.Form["email"];
-            contato.Texto = HttpContext.Request.Form["texto"];
+            try
+            {
+                Contato contato = new Contato();
+                contato.Nome = HttpContext.Request.Form["nome"];
+                contato.Email = HttpContext.Request.Form["email"];
+                contato.Texto = HttpContext.Request.Form["texto"];
 
-            ContatoEmail.EnviarContatoPorEmail(contato);
+                var listMessage = new List<ValidationResult>();
+                var context = new ValidationContext(contato);
+                bool isValid = Validator.TryValidateObject(contato, context, listMessage,true);
 
-            return new ContentResult() { Content = string.Format("Dados recebidos com sucesso!<br/> Nome: {0} <br/>E-mail: {1} <br/>Texto: {2}", contato.Nome, contato.Email, contato.Texto), ContentType = "text/html" };
+                if (isValid)
+                {
+                    ContatoEmail.EnviarContatoPorEmail(contato);
+
+
+                    ViewData["MSG_S"] = "Mensagem de contato enviada com sucesso";
+                }
+                else
+                {
+                    StringBuilder sb = new StringBuilder();
+                    foreach (var texto in listMessage)
+                    {
+                        sb.Append(texto.ErrorMessage);
+                    }
+                    ViewData["MSG_E"] = sb.ToString();
+                }
+
+            }
+            catch (Exception e)
+            {
+                ViewData["MSG_E"] = "Opss tivemos um problema no envio tente novamente";
+                //TODO - Implementar LOG
+            }
+            return View("Contato");
 
 
         }

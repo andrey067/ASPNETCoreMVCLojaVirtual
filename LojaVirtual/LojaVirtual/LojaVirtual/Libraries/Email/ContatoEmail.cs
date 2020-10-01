@@ -16,7 +16,7 @@ namespace LojaVirtual.Libraries.Email
              */
             SmtpClient smtp = new SmtpClient("smtp.gmail.com", 587);
             smtp.UseDefaultCredentials = false;
-            smtp.Credentials = new NetworkCredential("andr3y.lim1@gmail.com", "@ndr3y067");
+            smtp.Credentials = new NetworkCredential("andr3y.lim1@gmail.com", "");
             smtp.EnableSsl = true;
 
             string corpoMsg = string.Format("<h2>Contato - LojaVirtual</h2>" +
