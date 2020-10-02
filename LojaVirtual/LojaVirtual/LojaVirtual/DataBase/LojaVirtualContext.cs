@@ -19,6 +19,6 @@ namespace LojaVirtual.DataBase
 
         }
 
-        public DbSet<Cliente> Clientes { get; set }
+        public DbSet<Cliente> Clientes { get; set; }
     }
 }
