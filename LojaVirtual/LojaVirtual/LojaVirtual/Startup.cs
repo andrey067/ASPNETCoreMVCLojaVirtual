@@ -63,11 +63,11 @@ namespace LojaVirtual
 
 
             */
-            app.UseMvc(routes =>
+            app.UseMvc(routes => 
             {
                 routes.MapRoute(
                     name: "default",
-                    template: "{controller=Home}/{action=Index}/{id?}");
+                    template: "/{action=Index}/{controller=Home}/{id?}");
             });
 
 
