@@ -7,14 +7,40 @@ using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
+using LojaVirtual.DataBase;
 
 namespace LojaVirtual.Controllers
 {
     public class HomeController : Controller
     {
+        private LojaVirtualContext _banco;
+        public HomeController(LojaVirtualContext banco)
+        {
+            _banco = banco;
+        }
+
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
+        }
+
+        [HttpPost]
+        public IActionResult Index([FromForm] NewsletterEmail newsletter)
+        {
+            //Validadacoes
+            if (ModelState.IsValid)
+            {
+                //adicao no bando de dados
+                _banco.NewsletterEmail.Add(newsletter);
+                _banco.SaveChanges();
+                TempData["MSG_S"] = "E-mail cadastrado, agora você vai receber  promocoes especias no seu e-mail";
+                return RedirectToAction(nameof(Index));
+            }
+            else
+            {
+                return View();
+            }
         }
 
         public IActionResult Contato()
@@ -33,7 +59,7 @@ namespace LojaVirtual.Controllers
 
                 var listMessage = new List<ValidationResult>();
                 var context = new ValidationContext(contato);
-                bool isValid = Validator.TryValidateObject(contato, context, listMessage,true);
+                bool isValid = Validator.TryValidateObject(contato, context, listMessage, true);
 
                 //Identificacao dos erros nos campos
                 if (isValid)
@@ -43,7 +69,7 @@ namespace LojaVirtual.Controllers
 
                     ViewData["MSG_S"] = "Mensagem de contato enviada com sucesso";
                 }
-                
+
                 else
                 {
                     StringBuilder sb = new StringBuilder();
@@ -54,9 +80,9 @@ namespace LojaVirtual.Controllers
                     ViewData["MSG_E"] = sb.ToString();
                     ViewData["CONTATO"] = contato;
                 }
-                
+
             }
-            catch (Exception e)
+            catch (Exception )
             {
                 ViewData["MSG_E"] = "Opss tivemos um problema no envio tente novamente";
                 //TODO - Implementar LOG
