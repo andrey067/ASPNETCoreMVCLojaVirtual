@@ -1,6 +1,5 @@
 ﻿using LojaVirtual.Models;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.EntityFrameworkCore.Metadata.Internal;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,16 +9,16 @@ namespace LojaVirtual.Controllers
 {
     public class ProdutoController : Controller
     {
-
-        /*-controlador herda da classe Controller
-         * 
-         * E sempre vai retornar ActionResult ou IActionResult
-         * 
+        /*
+         * ActionResult
+         * IActionResult
          */
         public ActionResult Visualizar()
         {
             Produto produto = GetProduto();
+
             return View(produto);
+            //return new ContentResult() { Content = "<h3>Produto -> Visualizar<h3>", ContentType = "text/html" };
         }
 
         private Produto GetProduto()
@@ -27,9 +26,9 @@ namespace LojaVirtual.Controllers
             return new Produto()
             {
                 Id = 1,
-                Nome = "Xbox One S",
-                Descricao = "4k Run",
-                Valor = 2000
+                Nome = "Xbox One X",
+                Descricao = "Jogue em 4k",
+                Valor = 2000.00M
             };
         }
     }

@@ -19,7 +19,7 @@ namespace LojaVirtual.Libraries.Lang {
     // através de uma ferramenta como ResGen ou Visual Studio.
     // Para adicionar ou remover um associado, edite o arquivo .ResX e execute ResGen novamente
     // com a opção /str, ou recrie o projeto do VS.
-    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "16.0.0.0")]
+    [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Resources.Tools.StronglyTypedResourceBuilder", "15.0.0.0")]
     [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     public class Mensagem {
@@ -61,7 +61,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} é obrigatorio!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} é obrigatório!.
         /// </summary>
         public static string MSG_E001 {
             get {
@@ -70,7 +70,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no minimo {1} caractere!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no mínimo {1} caracteres!.
         /// </summary>
         public static string MSG_E002 {
             get {
@@ -79,7 +79,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no maximo {1} caracteres!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} deve ter no máxiimo {1} caracteres!.
         /// </summary>
         public static string MSG_E003 {
             get {
@@ -88,7 +88,7 @@ namespace LojaVirtual.Libraries.Lang {
         }
         
         /// <summary>
-        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} não é valido!.
+        ///   Consulta uma cadeia de caracteres localizada semelhante a O campo {0} não é válido!.
         /// </summary>
         public static string MSG_E004 {
             get {

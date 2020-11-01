@@ -5,6 +5,21 @@
     <AspNetCoreHostingModel>InProcess</AspNetCoreHostingModel>
   </PropertyGroup>
 
+  <ItemGroup>
+    <Compile Remove="Migrations\20190130150611_BancoInicial.cs" />
+    <Compile Remove="Migrations\20190130150611_BancoInicial.Designer.cs" />
+    <Compile Remove="Migrations\20201013152435_RetomandoEstudo.cs" />
+    <Compile Remove="Migrations\20201013152435_RetomandoEstudo.Designer.cs" />
+    <Compile Remove="Migrations\20201020143348_ClienteTeste.cs" />
+    <Compile Remove="Migrations\20201020143348_ClienteTeste.Designer.cs" />
+    <Compile Remove="Migrations\20201020143705_ClienteTeste.cs" />
+    <Compile Remove="Migrations\20201020143705_ClienteTeste.Designer.cs" />
+    <Compile Remove="Migrations\20201020144454_ClienteTeste.cs" />
+    <Compile Remove="Migrations\20201020144454_ClienteTeste.Designer.cs" />
+    <Compile Remove="Migrations\20201020144538_Initial.cs" />
+    <Compile Remove="Migrations\20201020144538_Initial.Designer.cs" />
+  </ItemGroup>
+
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore" Version="2.2.0" />
@@ -16,11 +31,12 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="2.2.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="2.2.0">
       <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.2.0" />
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.2.4" />
+    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
   </ItemGroup>
 
 
@@ -38,6 +54,11 @@
       <Generator>PublicResXFileCodeGenerator</Generator>
       <LastGenOutput>Mensagem.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+  </ItemGroup>
+
+
+  <ItemGroup>
+    <Folder Include="Areas\Colaborador\Models\" />
   </ItemGroup>
 
 </Project>
