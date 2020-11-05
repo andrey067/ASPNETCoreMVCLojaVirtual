@@ -25,15 +25,17 @@ namespace LojaVirtual.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<int?>("CategoriaPaiID");
+                    b.Property<int?>("CategoriaPaiId");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Slug");
+                    b.Property<string>("Slug")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CategoriaPaiID");
+                    b.HasIndex("CategoriaPaiId");
 
                     b.ToTable("Categorias");
                 });
@@ -106,7 +108,7 @@ namespace LojaVirtual.Migrations
                 {
                     b.HasOne("LojaVirtual.Models.Categoria", "CategoriaPai")
                         .WithMany()
-                        .HasForeignKey("CategoriaPaiID");
+                        .HasForeignKey("CategoriaPaiId");
                 });
 #pragma warning restore 612, 618
         }

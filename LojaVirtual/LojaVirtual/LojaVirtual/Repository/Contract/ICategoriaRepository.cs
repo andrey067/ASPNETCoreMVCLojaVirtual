@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using X.PagedList;
 
 namespace LojaVirtual.Repository.Contract
 {
@@ -14,7 +15,8 @@ namespace LojaVirtual.Repository.Contract
         void Atualizar(Categoria categoria);
         void Excluir(int Id);
         Categoria ObterCategoria(int Id);
-        IEnumerable<Categoria> ObterTodasCategorias(int? pagina);
+        IEnumerable<Categoria> ObterTodasCategorias();
+        IPagedList<Categoria> ObterTodasCategorias(int? pagina);
 
 
     }
