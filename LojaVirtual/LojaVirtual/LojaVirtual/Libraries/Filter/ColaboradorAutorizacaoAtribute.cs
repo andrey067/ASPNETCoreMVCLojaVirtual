@@ -16,13 +16,13 @@ namespace LojaVirtual.Libraries.Filter
         LoginColaborador _loginColaborador;
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            _loginColaborador = (LoginColaborador)context.HttpContext.RequestServices.GetService(typeof(LoginCliente));
+            _loginColaborador = (LoginColaborador)context.HttpContext.RequestServices.GetService(typeof(LoginColaborador));
 
             Models.Colaborador colaborador = _loginColaborador.GetColaborador();
 
             if (colaborador == null)
             {
-                context.Result = new ContentResult() { Content = "Acesso negado" };
+                context.Result = new RedirectToActionResult("Login", "Home", null);
             }
         }
     }

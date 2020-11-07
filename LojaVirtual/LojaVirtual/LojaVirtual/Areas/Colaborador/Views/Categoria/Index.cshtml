@@ -12,14 +12,14 @@
 {
 
     <a asp-action="Cadastrar" class="btn btn-primary"> Cadastrar</a>
-
+    <br />
     <div class="table-responsive">
         <table class="table table-bordered">
             <thead>
                 <tr>
-                    <th scope="col">Codigo</th>
-                    <th scope="col">Nome</th>
-                    <th scope="col">Pai</th>
+                    <th scope="col">@Html.DisplayNameFor(model=> model.First().Id)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().Nome)</th>
+                    <th scope="col">@Html.DisplayNameFor(model => model.First().CategoriaPai)</th>
                     <th scope="col">Acoes</th>
                 </tr>
             </thead>
