@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Libraries.Filter;
+using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Migrations;
 using LojaVirtual.Models;
 using LojaVirtual.Repository;
@@ -50,7 +51,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 _categoriaRepository.Cadastrar(categoria);
 
-                TempData["MSG_S"] = "Registro salvo com sucesso!";
+                TempData["MSG_S"] = Mensagem.MSG_S001;
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Categoria = _categoriaRepository.ObterTodasCategorias().Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
@@ -73,7 +74,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             if (ModelState.IsValid)
             {
                 _categoriaRepository.Atualizar(categoria);
-                TempData["MSG_S"] = "Registro salvo com sucesso!";
+                TempData["MSG_S"] = Mensagem.MSG_S001;
                 return RedirectToAction(nameof(Index));
             }
             ViewBag.Categoria = _categoriaRepository.ObterTodasCategorias().Where(a => a.Id != Id).Select(a => new SelectListItem(a.Nome, a.Id.ToString()));
@@ -83,7 +84,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         public IActionResult Excluir(int Id)
         {
             _categoriaRepository.Excluir(Id);
-            TempData["MSG_S"] = "Registro Excluido com Sucesso";
+            TempData["MSG_S"] = Mensagem.MSG_S002;
 
             return RedirectToAction(nameof(Index));
         }
