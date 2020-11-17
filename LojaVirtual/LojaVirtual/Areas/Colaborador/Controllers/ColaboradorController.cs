@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using LojaVirtual.Libraries.Email;
+using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Texto;
 using LojaVirtual.Repositories.Contracts;
@@ -12,6 +13,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
+    [ColaboradorAutorizacao]
     public class ColaboradorController : Controller
     {
         private IColaboradorRepository _colaboradorRespository;
@@ -39,14 +41,15 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Cadastrar([FromForm] Models.Colaborador colaborador)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
-                //TODO - Gerar Senha Aleatorio, Enviar o E-mail
+                //TODO - Gerar Senha Aleatorio, Enviar o E-mail1
 
                 colaborador.Tipo = "C";
+                colaborador.Senha = KeyGenerator.GetUniqueKey(8);
+                _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
                 _colaboradorRespository.Cadastrar(colaborador);
-
-
                 TempData["MSG_S"] = Mensagem.MSG_S001;
 
                 return RedirectToAction(nameof(Index));
@@ -59,7 +62,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         {
             Models.Colaborador colaborador = _colaboradorRespository.ObterColaborador(id);
             colaborador.Senha = KeyGenerator.GetUniqueKey(8);
-            _colaboradorRespository.Atualizar(colaborador);
+            _colaboradorRespository.AtualizarSenha(colaborador);
 
             _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
 
@@ -78,8 +81,10 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         [HttpPost]
         public IActionResult Atualizar([FromForm] Models.Colaborador colaborador, int id)
         {
+            ModelState.Remove("Senha");
             if (ModelState.IsValid)
             {
+                //Vai somente os campos Nome e Email para o banco
                 _colaboradorRespository.Atualizar(colaborador);
 
                 TempData["MSG_S"] = Mensagem.MSG_S001;
