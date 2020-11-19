@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Models;
+using LojaVirtual.Models.Constantes;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -13,7 +14,7 @@ using X.PagedList;
 namespace LojaVirtual.Areas.Colaborador.Controllers
 {
     [Area("Colaborador")]
-    [ColaboradorAutorizacao("G")]
+    [ColaboradorAutorizacao(ColaboradorTipoConstante.gerente)]
     public class CategoriaController : Controller
     {
         private ICategoriaRepository _categoriaRepository;
@@ -75,6 +76,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValideteHttpReferer]
         public IActionResult Excluir(int id)
         {
             _categoriaRepository.Excluir(id);

@@ -6,6 +6,7 @@ using LojaVirtual.Libraries.Email;
 using LojaVirtual.Libraries.Filtro;
 using LojaVirtual.Libraries.Lang;
 using LojaVirtual.Libraries.Texto;
+using LojaVirtual.Models.Constantes;
 using LojaVirtual.Repositories.Contracts;
 using Microsoft.AspNetCore.Mvc;
 using X.PagedList;
@@ -46,7 +47,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
             {
                 //TODO - Gerar Senha Aleatorio, Enviar o E-mail1
 
-                colaborador.Tipo = "C";
+                colaborador.Tipo = ColaboradorTipoConstante.comum;
                 colaborador.Senha = KeyGenerator.GetUniqueKey(8);
                 _gerenciarEmail.EnviarSenhaParaColaboradorPorEmail(colaborador);
                 _colaboradorRespository.Cadastrar(colaborador);
@@ -58,6 +59,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValideteHttpReferer]
         public IActionResult GerarSenha(int id)
         {
             Models.Colaborador colaborador = _colaboradorRespository.ObterColaborador(id);
@@ -95,6 +97,7 @@ namespace LojaVirtual.Areas.Colaborador.Controllers
         }
 
         [HttpGet]
+        [ValideteHttpReferer]
         public IActionResult Excluir(int id)
         {
             _colaboradorRespository.Excluir(id);
