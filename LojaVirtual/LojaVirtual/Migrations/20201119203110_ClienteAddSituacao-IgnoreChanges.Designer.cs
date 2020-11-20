@@ -10,14 +10,14 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace LojaVirtual.Migrations
 {
     [DbContext(typeof(LojaVirtualContext))]
-    [Migration("20190219233902_Categorias")]
-    partial class Categorias
+    [Migration("20201119203110_ClienteAddSituacao-IgnoreChanges")]
+    partial class ClienteAddSituacaoIgnoreChanges
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "2.2.1-servicing-10028")
+                .HasAnnotation("ProductVersion", "2.2.6-servicing-10079")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
@@ -29,9 +29,11 @@ namespace LojaVirtual.Migrations
 
                     b.Property<int?>("CategoriaPaiId");
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Slug");
+                    b.Property<string>("Slug")
+                        .IsRequired();
 
                     b.HasKey("Id");
 
@@ -63,6 +65,8 @@ namespace LojaVirtual.Migrations
                     b.Property<string>("Sexo")
                         .IsRequired();
 
+                    b.Property<string>("Situacao");
+
                     b.Property<string>("Telefone")
                         .IsRequired();
 
@@ -77,11 +81,14 @@ namespace LojaVirtual.Migrations
                         .ValueGeneratedOnAdd()
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Email");
+                    b.Property<string>("Email")
+                        .IsRequired();
 
-                    b.Property<string>("Nome");
+                    b.Property<string>("Nome")
+                        .IsRequired();
 
-                    b.Property<string>("Senha");
+                    b.Property<string>("Senha")
+                        .IsRequired();
 
                     b.Property<string>("Tipo");
 

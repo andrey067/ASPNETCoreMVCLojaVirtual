@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace LojaVirtual.Migrations
 {
-    public partial class Colaboradores : Migration
+    public partial class ClienteAddSituacaoIgnoreChanges : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -56,27 +56,65 @@ namespace LojaVirtual.Migrations
                 oldClrType: typeof(string),
                 oldNullable: true);
 
+            migrationBuilder.AddColumn<string>(
+                name: "Situacao",
+                table: "Clientes",
+                nullable: true);
+
+            migrationBuilder.CreateTable(
+                name: "Categorias",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                    Nome = table.Column<string>(nullable: false),
+                    Slug = table.Column<string>(nullable: false),
+                    CategoriaPaiId = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categorias", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Categorias_Categorias_CategoriaPaiId",
+                        column: x => x.CategoriaPaiId,
+                        principalTable: "Categorias",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateTable(
                 name: "Colaboradores",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
                         .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
-                    Nome = table.Column<string>(nullable: true),
-                    Email = table.Column<string>(nullable: true),
-                    Senha = table.Column<string>(nullable: true),
+                    Nome = table.Column<string>(nullable: false),
+                    Email = table.Column<string>(nullable: false),
+                    Senha = table.Column<string>(nullable: false),
                     Tipo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Colaboradores", x => x.Id);
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Categorias_CategoriaPaiId",
+                table: "Categorias",
+                column: "CategoriaPaiId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
+                name: "Categorias");
+
+            migrationBuilder.DropTable(
                 name: "Colaboradores");
+
+            migrationBuilder.DropColumn(
+                name: "Situacao",
+                table: "Clientes");
 
             migrationBuilder.AlterColumn<string>(
                 name: "Email",

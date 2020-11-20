@@ -67,6 +67,7 @@
                                 Produtos
                             </a>
                         </li>
+
                         @if (colaborador.GetColaborador().Tipo == ColaboradorTipoConstante.gerente)
                         {
             <li class="nav-item">
@@ -74,9 +75,10 @@
                     <span data-feather="users"></span>
                     Colaborador
                 </a>
-            </li>}
+            </li>
+}
                         <li class="nav-item">
-                            <a class="nav-link" href="#">
+                            <a asp-controller="ClienteController" asp-action="Index" class="nav-link" href="#">
                                 <span data-feather="users"></span>
                                 Cliente
                             </a>
